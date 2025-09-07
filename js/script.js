@@ -1,4 +1,5 @@
 const categoriesContainer = document.getElementById("categories-container");
+const plantCardsContainer = document.getElementById("plants-container");
 
 const fetchData = async (url) => {
     try {
@@ -23,6 +24,22 @@ loadAllPlants();
 
 const displayAllPlants = (plants) => {
     console.log(plants);
+    plants.map(plant => {
+        plantCardsContainer.innerHTML += `
+        <div class="h-[100%] w-[350px] bg-white px-2 pt-3 rounded-lg shadow-md">
+            <div className="h-[100%]">
+                <img class="w-[320px] h-[180px] mx-auto object-cover rounded-2xl" loading="lazy" src="${plant.image}" alt="tree1" />
+                <p class="pl-1 mt-2 text-sm font-semibold">${plant.name}</p>
+                <p class="pl-1 mt-2 text-xs text-justify text-gray-500">${plant.description}</p>
+                <div class="flex justify-between items-center px-1 mt-3">
+                    <p class="text-xs font-semibold rounded-3xl px-3 py-1 bg-[#DCFCE7] text-[#15803D]">${plant.category}</p>
+                    <p class="py-1 px-1">৳<span>${plant.price}</span></p>
+                </div>
+                <button class="btn btn-block rounded-full bg-[var(--primary)] text-white mt-2 mb-3 ">Add to Cart</button>
+            </div>
+        </div>
+        `;
+    })
 };
 
 const loadCategories = async () => {
