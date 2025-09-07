@@ -16,8 +16,58 @@
         <!-- custom css link -->
         <link rel="stylesheet" href="./css/style.css" />
     </head>
-    <body>
-        <h1 class="text-3xl font-bold underline text-center">Hello world!</h1>
+    <body class="font-inter">
+        <header class="max-w-[1920px] mx-auto bg-[var(--primary)]">
+            <nav class="md:w-[90%] lg:w-[90%] mx-auto">
+                <div class="navbar  bg-[var(--primary)]">
+                    <div class="navbar-start">
+                        <div class="dropdown">
+                            <div
+                                tabindex="0"
+                                role="button"
+                                class="btn btn-ghost lg:hidden"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 6h16M4 12h8m-8 6h16"
+                                    />
+                                </svg>
+                            </div>
+                            <ul
+                                tabindex="0"
+                                class="menu menu-sm dropdown-content bg-[var(--primary)] rounded-box z-1 mt-3 w-52 p-2 shadow"
+                            >
+                                <li><a class="text-white">About</a></li>
+                                <li><a class="text-white">Gallery</a></li>
+                                <li><a class="text-white">Plant a tree</a></li>
+                            </ul>
+                        </div>
+                        <a class="btn btn-ghost text-xl text-white"
+                            >Green Earth</a
+                        >
+                    </div>
+                    <div class="navbar-center hidden lg:flex">
+                        <ul class="menu menu-horizontal px-1">
+                            <li><a class="text-white">About</a></li>
+                            <li><a class="text-white">Gallery</a></li>
+                            <li><a class="text-white">Plant a tree</a></li>
+                        </ul>
+                    </div>
+                    <div class="navbar-end">
+                        <a class="btn bg-[var(--secondary)] rounded-full">Plant a tree</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
         <!-- custom js link -->
         <script src="./js/script.js"></script>
     </body>
