@@ -1,6 +1,15 @@
 const categoriesContainer = document.getElementById("categories-container");
 const plantCardsContainer = document.getElementById("plants-container");
 
+const loadingSpinner = () => `
+    <div class="flex w-52 flex-col gap-4">
+        <div class="skeleton h-32 w-full"></div>
+        <div class="skeleton h-4 w-28"></div>
+        <div class="skeleton h-4 w-full"></div>
+        <div class="skeleton h-4 w-full"></div>
+    </div>
+`;
+
 const fetchData = async (url) => {
     try {
         const response = await fetch(url);
@@ -15,6 +24,8 @@ const fetchData = async (url) => {
 };
 
 const loadAllPlants = async () => {
+    loadingSpinner();
+    plantCardsContainer.innerHTML = loadingSpinner().repeat(6);
     const data = await fetchData(
         "https://openapi.programming-hero.com/api/plants"
     );
@@ -23,7 +34,8 @@ const loadAllPlants = async () => {
 loadAllPlants();
 
 const displayAllPlants = (plants) => {
-    console.log(plants);
+    plantCardsContainer.innerHTML = ' ';
+
     plants.map(plant => {
         plantCardsContainer.innerHTML += `
         <div class="h-full w-[340px] md:w-[260px] mx-auto bg-white px-2 md:px-2 lg:px-2 pt-3 rounded-lg shadow-md">
@@ -55,7 +67,6 @@ const loadCategories = async () => {
         });
 
         if (e.target && e.target.localName === "li") {
-            console.log(e.target.innerText);
             e.target.classList.add(
                 "active",
                 "bg-[var(--primary)]",
@@ -69,7 +80,14 @@ loadCategories();
 function displayCategories(categories) {
     categories.forEach((category) => {
         categoriesContainer.innerHTML += `
-            <li id="category-${category.id}" class="border-2 md:border-0 lg:border-0 lg:bg-none md:bg-none px-2 cursor-pointer rounded-md">${category.category_name}</li>
+            <li id="category-${category.id}" onclick="loadPlantsByCategory(${category.id})" class="border-2 md:border-0 lg:border-0 lg:bg-none md:bg-none px-2 cursor-pointer rounded-md">${category.category_name}</li>
         `;
     });
+}
+
+const loadPlantsByCategory = async (id) => {
+    loadingSpinner();
+    plantCardsContainer.innerHTML = loadingSpinner().repeat(3);
+    const data = await fetchData(`https://openapi.programming-hero.com/api/category/${id}`);
+    displayAllPlants(data.plants);
 }
