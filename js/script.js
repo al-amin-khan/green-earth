@@ -1,5 +1,10 @@
 const categoriesContainer = document.getElementById("categories-container");
 const plantCardsContainer = document.getElementById("plants-container");
+const cartContainer = document.getElementById("cart");
+
+
+
+
 
 const loadingSpinner = () => `
     <div class="flex w-52 flex-col gap-4">
@@ -47,7 +52,14 @@ const displayAllPlants = (plants) => {
                     <p class="text-xs font-semibold rounded-3xl px-3 py-1 bg-[#DCFCE7] text-[#15803D]">${plant.category}</p>
                     <p class="py-1 px-1">৳<span>${plant.price}</span></p>
                 </div>
-                <button class="btn btn-block rounded-full bg-[var(--primary)] text-white mt-2 mb-3 ">Add to Cart</button>
+                <button 
+                    class="btn btn-add-to-cart btn-block rounded-full bg-[var(--primary)] text-white mt-2 mb-3"
+                    data-id="${plant.id}"
+                    data-name="${plant.name}"
+                    data-price="${plant.price}"
+                    >
+                        Add to Cart
+                    </button>
             </div>
         </div>
 
@@ -127,3 +139,67 @@ const loadShowModalDialog = async (id) => {
     `;
     
 }
+
+
+// plantCardsContainer.addEventListener('click', (e) => {
+//     const cartBtn = e.target.classList.contains('btn-add-to-cart');
+//     if(!cartBtn) return;
+    
+//     document.getElementsByClassName('btn-add-to-cart').addEventListener('click', function (){
+//         console.log('clicked');
+        
+//     })
+    
+    
+//     // const { id, name, price } = cart.dataset;
+//     const countBtn = document.getElementsByClassName('count');
+//     console.log((countBtn[0].innerText)++ );
+    
+
+    
+    
+// })
+
+const cartData = [];
+plantCardsContainer.addEventListener('click', function (e){
+    const isCartBtn = e.target.classList.contains('btn-add-to-cart');
+    if(!isCartBtn) return;
+    const {id, name, price} = e.target.dataset;
+    const existing = cartData.find(item => item.id === id);
+    existing ? existing.quantity += 1 : cartData.push({ id, name, price, quantity: 1 });
+    // console.log(cartData);
+    displayAddToCart(cartData)
+})
+
+const displayAddToCart = (carts) => {
+    cartContainer.innerHTML = '';
+    carts.map(cart => {
+        const {id, name, price, quantity} = cart;
+        cartContainer.innerHTML += `
+            <div
+                class="grid grid-cols-4 bg-[var(--bg-main)] py-2 space-x-1 items-center rounded-sm shadow-xs mb-2"
+            >
+                <div
+                    class="col-span-3 text-sm text-gray-500 px-3"
+                >
+                    <p class="">${name}</p>
+                    <p class="">
+                        ৳<span>${price}</span> x
+                        <span class="count">${quantity}</span>
+                    </p>
+                </div>
+                <div
+                    class="col-span-1 text-end pr-3 "
+                >
+                    <p class="text-md rounded-sm inline-block px-2 cursor-pointer text-gray-500">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-square-rounded-minus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 12h6" /><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" /></svg>
+                    </p>
+                </div>
+            </div>
+        `;
+    })
+    
+}
+
+
+
