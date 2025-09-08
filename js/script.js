@@ -26,9 +26,9 @@ const displayAllPlants = (plants) => {
     console.log(plants);
     plants.map(plant => {
         plantCardsContainer.innerHTML += `
-        <div class="h-[100%] w-[350px] bg-white px-2 pt-3 rounded-lg shadow-md">
+        <div class="h-full w-[350px] md:w-[260px] bg-white px-2 pt-3 rounded-lg shadow-md">
             <div className="h-[100%]">
-                <img class="w-[320px] h-[180px] mx-auto object-cover rounded-2xl" loading="lazy" src="${plant.image}" alt="tree1" />
+                <img class="w-[280px] h-[150px] mx-auto object-cover rounded-2xl" loading="lazy" src="${plant.image}" alt="tree1" />
                 <p class="pl-1 mt-2 text-sm font-semibold">${plant.name}</p>
                 <p class="pl-1 mt-2 text-xs text-justify text-gray-500">${plant.description}</p>
                 <div class="flex justify-between items-center px-1 mt-3">
