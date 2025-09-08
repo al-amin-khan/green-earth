@@ -63,7 +63,7 @@
                         </ul>
                     </div>
                     <div class="navbar-end">
-                        <a class="btn bg-[var(--secondary)] rounded-full"
+                        <a class="btn rounded-full bg-[var(--secondary)] mt-3 text-[var(--primary)]"
                             >Plant a tree</a
                         >
                     </div>
@@ -91,11 +91,11 @@
                                 Join our mission to plant 1 million trees and
                                 make the Earth greener for future generations.
                             </p>
-                            <button
-                                class="btn rounded-full bg-[var(--secondary)] mt-3"
+                            <a
+                                class="btn rounded-full bg-[var(--secondary)] mt-3 text-[var(--primary)]"
                             >
                                 Get Involved
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <img
@@ -180,7 +180,7 @@
             </section>
 
             <!-- impact section -->
-            <section class="bg-[var(--bg-banner)] py-8">
+            <section class="bg-[var(--bg-banner)] pt-8 pb-14">
                 <h3 class="text-center text-2xl pt-4 pb-4 font-semibold">
                     Our Impact
                 </h3>
@@ -200,6 +200,30 @@
                 </div>
             </section>
         </main>
+
+        <footer>
+            <div class="max-w-[1920px] mx-auto bg-[var(--bg-footer)] min-h-[300px] pt-5 pb-16 flex flex-col justify-center items-center">
+                <h3 class="text-white text-3xl text-center font-semibold py-5">Plant a Tree Today</h3>
+                <div class="bg-[var(--primary)] inline-block rounded-lg px-5 py-7 w-[40%] shadow-md">
+                    <form class="flex flex-col justify-center items-center space-y-3">
+                        <input type="text" placeholder="Your Name" class="input w-full" />
+                        <input type="email" placeholder="Your Email Address" class="input w-full" />
+                        <select class="select w-full">
+                            <option disabled selected>Number of Trees</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <button class="btn btn-block rounded-full bg-[var(--secondary)] text-[var(--primary)]">Donate Now</button>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center font-extralight bg-[#14532D] text-white py-2">
+                <p>© 2025 Green Earth. All Rights Reserved.</p>
+            </div>
+        </footer>
 
         <!-- custom js link -->
         <script src="./js/script.js"></script>
