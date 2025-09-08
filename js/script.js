@@ -34,14 +34,14 @@ const loadAllPlants = async () => {
 loadAllPlants();
 
 const displayAllPlants = (plants) => {
-    plantCardsContainer.innerHTML = ' ';
+    plantCardsContainer.innerHTML = '';
 
     plants.map(plant => {
         plantCardsContainer.innerHTML += `
         <div class="h-full w-[340px] md:w-[260px] mx-auto bg-white px-2 md:px-2 lg:px-2 pt-3 rounded-lg shadow-md">
-            <div className="h-[100%]">
+            <div class="h-[100%]">
                 <img class="w-[280px] h-[150px] mx-auto object-cover rounded-2xl" loading="lazy" src="${plant.image}" alt="${plant.name}" />
-                <p class="pl-1 mt-2 text-sm font-semibold">${plant.name}</p>
+                <button onclick="my_modal_${plant.id}.showModal()" class="pl-1 mt-2 text-sm font-semibold cursor-pointer">${plant.name}</button>
                 <p class="pl-1 mt-2 text-xs text-justify text-gray-500">${plant.description}</p>
                 <div class="flex justify-between items-center px-1 mt-3">
                     <p class="text-xs font-semibold rounded-3xl px-3 py-1 bg-[#DCFCE7] text-[#15803D]">${plant.category}</p>
@@ -50,7 +50,12 @@ const displayAllPlants = (plants) => {
                 <button class="btn btn-block rounded-full bg-[var(--primary)] text-white mt-2 mb-3 ">Add to Cart</button>
             </div>
         </div>
+
+        <dialog id="my_modal_${plant.id}" class="modal">
+            
+        </dialog>
         `;
+        loadShowModalDialog(plant.id);
     })
 };
 
@@ -90,4 +95,37 @@ const loadPlantsByCategory = async (id) => {
     plantCardsContainer.innerHTML = loadingSpinner().repeat(3);
     const data = await fetchData(`https://openapi.programming-hero.com/api/category/${id}`);
     displayAllPlants(data.plants);
+}
+
+// https://openapi.programming-hero.com/api/plant/1
+const loadShowModalDialog = async (id) => {
+    const data = await fetchData(`https://openapi.programming-hero.com/api/plant/${id}`);
+    const plant = data.plants;
+    // console.log(plant);
+    
+    
+    const modal = document.getElementById(`my_modal_${id}`);
+    // console.log(modal);
+    modal.innerHTML = `
+        <div class="modal-box">
+            <div class="text-end -mr-5 -mt-5">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn btn-sm text-sm rounded-full bg-[#15803D]/80 text-white">x</button>
+                </form>
+            </div>
+            <div class="h-[100%] m-0">
+                <img class="w-[450px] h-[250px] mx-auto object-cover rounded-2xl" loading="lazy" src="${plant.image}" alt="${plant.name}" />
+                <p class="pl-1 mt-2 text-base font-semibold cursor-pointer">${plant.name}</p>
+                <p class="pl-1 mt-2 text-sm text-justify text-gray-500">${plant.description}</p>
+                <div class="flex justify-between items-center px-1 mt-3">
+                    <p class="text-sm font-semibold rounded-3xl px-3 py-1 bg-[#DCFCE7] text-[#15803D]">${plant.category}</p>
+                    <p class="text-sm font-semibold rounded-3xl px-3 py-1 bg-[#DCFCE7] text-[#15803D]"><span>৳</span>${plant.price}</p>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+    `;
+    
 }
