@@ -101,11 +101,8 @@ const loadPlantsByCategory = async (id) => {
 const loadShowModalDialog = async (id) => {
     const data = await fetchData(`https://openapi.programming-hero.com/api/plant/${id}`);
     const plant = data.plants;
-    // console.log(plant);
-    
     
     const modal = document.getElementById(`my_modal_${id}`);
-    // console.log(modal);
     modal.innerHTML = `
         <div class="modal-box">
             <div class="text-end -mr-5 -mt-5">
@@ -120,6 +117,7 @@ const loadShowModalDialog = async (id) => {
                 <p class="pl-1 mt-2 text-sm text-justify text-gray-500">${plant.description}</p>
                 <div class="flex justify-between items-center px-1 mt-3">
                     <p class="text-sm font-semibold rounded-3xl px-3 py-1 bg-[#DCFCE7] text-[#15803D]">${plant.category}</p>
+                    <p class="text-sm font-semibold rounded-3xl px-3 py-1 bg-[#DCFCE7] text-[#15803D]">Plant ID: ${plant.id}</p>
                     <p class="text-sm font-semibold rounded-3xl px-3 py-1 bg-[#DCFCE7] text-[#15803D]"><span>৳</span>${plant.price}</p>
                 </div>
             </div>
