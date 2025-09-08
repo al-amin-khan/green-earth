@@ -63,7 +63,8 @@
                         </ul>
                     </div>
                     <div class="navbar-end">
-                        <a class="btn rounded-full bg-[var(--secondary)] mt-3 text-[var(--primary)]"
+                        <a
+                            class="btn rounded-full bg-[var(--secondary)] mt-0 md:mt-3 lg:mt-3 text-[var(--primary)]"
                             >Plant a tree</a
                         >
                     </div>
@@ -75,31 +76,35 @@
             <!-- banner section -->
             <section>
                 <div
-                    class="max-w-[1920px] mx-auto bg-[var(--bg-banner)] flex justify-items-center"
+                    class="w-full md:max-w-[1920px] lg:max-w-[1920px] mx-auto bg-[var(--bg-banner)] flex md:justify-center lg:justify-center items-end md:items-center lg:items-center"
                 >
                     <img
-                        class="bg-cover m-0 grow h-[300px]"
+                        class="bg-auto md:bg-cover lg:bg-cover m-0 grow h-[60px] md:h-[300px] lg:h-[300px]"
                         src="./assets/hero-leaf1.png"
                         alt="hero-leaf-left"
                     />
-                    <div class="flex-grow-2 grid items-center">
+                    <div
+                        class="flex-grow-2 grid items-center pt-3 md:pt-0 lg:pt-0 pb-2 md:pb-0 lg:pb-0"
+                    >
                         <div class="text-center space-y-1 px-2">
-                            <h1 class="font-bold text-4xl">
+                            <h1
+                                class="font-bold text-sm md:text-4xl lg:text-4xl"
+                            >
                                 Plant a Tree, Grow a Future
                             </h1>
-                            <p>
+                            <p class="text-xs md:text-balance lg:text-balance">
                                 Join our mission to plant 1 million trees and
                                 make the Earth greener for future generations.
                             </p>
                             <a
-                                class="btn rounded-full bg-[var(--secondary)] mt-3 text-[var(--primary)]"
+                                class="text-xs px-3 py-2 md:py-0 lg:py-0 md:text-base lg:text-base md:btn lg:btn rounded-full bg-[var(--secondary)] mt-0 md:mt-3 lg:mt-3 text-[var(--primary)]"
                             >
                                 Get Involved
                             </a>
                         </div>
                     </div>
                     <img
-                        class="bg-cover grow m-0 h-[300px]"
+                        class="bg-auto md:bg-cover lg:bg-cover grow m-0 h-[60px] md:h-[300px] lg:h-[300px]"
                         src="./assets/hero-leaf2.png"
                         alt="hero-leaf-right"
                     />
@@ -109,18 +114,24 @@
             <!--main content section -->
             <section>
                 <div
-                    class="max-w-[1920px] mx-auto bg-[var(--bg-main)] min-h-[600px] py-5"
+                    class="max-w-[1920px] mx-auto bg-[var(--bg-main)] min-h-[600px] py-0 md:py-5 lg:py-5"
                 >
-                    <h3 class="text-center text-3xl font-semibold py-4">
+                    <h3
+                        class="text-center text-xl md:text-3xl lg:text-3xl font-semibold pb-3 pt-8 md:pt-0 lg:pt-0 md:py-4 lg:py-4"
+                    >
                         Choose Your Trees
                     </h3>
-                    <div class="grid grid-cols-12 w-[90%] mx-auto">
-                        <div class="col-span-2 w-[100%] h-[350px]">
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-12 lg:grid-cols-12 w-[90%] mx-auto"
+                    >
+                        <div
+                            class="col-span-2 w-full md:w-[100%] lg:w-[100%] h-full md:h-[350px] lg:h-[350px]"
+                        >
                             <div class="px-1">
-                                <p class="">Categories</p>
+                                <p class="py-2 font-semibold">Categories</p>
                                 <ul
                                     id="categories-container"
-                                    class="flex flex-col pl-1 space-y-2.5"
+                                    class="flex flex-wrap md:flex-col lg:flex-col pl-1 space-y-0 md:space-y-2.5 lg:space-y-2.5 space-x-2 gap-y-1 md:space-x-2 lg:space-x-2"
                                 >
                                     <li
                                         id="all-plants"
@@ -131,10 +142,12 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-span-8 px-2 mx-auto">
+                        <div
+                            class="col-span-8 px-0 md:px-2 lg:px-2 mx-auto pt-10 md:pt-0 lg:pt-0"
+                        >
                             <div
                                 id="plants-container"
-                                class="grid grid-cols-3 gap-4"
+                                class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-y-3 md:gap-4 lg:gap-4 mx-auto my-0"
                             >
                                 <!-- plant cards will be appended here dynamically -->
                             </div>
@@ -148,15 +161,15 @@
 
             <!-- About the campaign section -->
             <section class="bg-[var(--bg-main)] py-12">
-                <div class="w-[60%] mx-auto">
+                <div class="w-[90%] md:w-[60%] lg:w-[60%] mx-auto">
                     <h3 class="text-center text-2xl py-6 font-bold">
                         About the Campaign
                     </h3>
                     <div
-                        class="flex sm:flex-col md:flex-row items-center justify-between gap-x-5"
+                        class="flex flex-col md:flex-row lg:flex-row items-center justify-between gap-x-5"
                     >
                         <img
-                            class="grow w-[50%]"
+                            class="grow w-full md:w-[50%] lg:w-[50%] pb-8 md:pb-0 lg:pb-0"
                             src="./assets/about.png"
                             alt=""
                         />
@@ -184,17 +197,31 @@
                 <h3 class="text-center text-2xl pt-4 pb-4 font-semibold">
                     Our Impact
                 </h3>
-                <div class="flex sm:flex-col md:flex-row gap-5 justify-center items-center">
-                    <div class="space-y-2 px-30 py-5 rounded-2xl text-center bg-white">
-                        <h4 class="text-3xl font-bold text-[var(--primary)]">500K+</h4>
+                <div
+                    class="flex flex-col w-[90%] mx-auto md:w-full lg:w-full md:flex-row lg:flex-row gap-5 justify-center items-center"
+                >
+                    <div
+                        class="space-y-2 px-30 md:px-30 lg:px-30 py-5 rounded-2xl text-center bg-white"
+                    >
+                        <h4 class="text-3xl font-bold text-[var(--primary)]">
+                            500K+
+                        </h4>
                         <p class="text-[#1F2937]/80">Trees Planted</p>
                     </div>
-                    <div class="space-y-2 px-30 py-5 rounded-2xl text-center bg-white">
-                        <h4 class="text-3xl font-bold text-[var(--primary)]">120+</h4>
+                    <div
+                        class="space-y-2 px-22 md:px-30 lg:px-30 py-5 rounded-2xl text-center bg-white"
+                    >
+                        <h4 class="text-3xl font-bold text-[var(--primary)]">
+                            120+
+                        </h4>
                         <p class="text-[#1F2937]/80">Communities Involved</p>
                     </div>
-                    <div class="space-y-2 px-30 py-5 rounded-2xl text-center bg-white">
-                        <h4 class="text-3xl font-bold text-[var(--primary)]">30+</h4>
+                    <div
+                        class="space-y-2 px-25 md:px-30 lg:px-30 py-5 rounded-2xl text-center bg-white"
+                    >
+                        <h4 class="text-3xl font-bold text-[var(--primary)]">
+                            30+
+                        </h4>
                         <p class="text-[#1F2937]/80">Countries Reached</p>
                     </div>
                 </div>
@@ -202,12 +229,28 @@
         </main>
 
         <footer>
-            <div class="max-w-[1920px] mx-auto bg-[var(--bg-footer)] min-h-[300px] pt-5 pb-16 flex flex-col justify-center items-center">
-                <h3 class="text-white text-3xl text-center font-semibold py-5">Plant a Tree Today</h3>
-                <div class="bg-[var(--primary)] inline-block rounded-lg px-5 py-7 w-[40%] shadow-md">
-                    <form class="flex flex-col justify-center items-center space-y-3">
-                        <input type="text" placeholder="Your Name" class="input w-full" />
-                        <input type="email" placeholder="Your Email Address" class="input w-full" />
+            <div
+                class="max-w-[1920px] mx-auto bg-[var(--bg-footer)] min-h-[300px] pt-5 pb-16 flex flex-col justify-center items-center"
+            >
+                <h3 class="text-white text-2xl md:text-3xl lg:text-3xl text-center font-semibold py-5">
+                    Plant a Tree Today
+                </h3>
+                <div
+                    class="bg-[var(--primary)] inline-block rounded-lg px-5 py-7 w-[90%] md:w-[40%] lg:w-[40%] shadow-md"
+                >
+                    <form
+                        class="flex flex-col justify-center items-center space-y-3"
+                    >
+                        <input
+                            type="text"
+                            placeholder="Your Name"
+                            class="input w-full"
+                        />
+                        <input
+                            type="email"
+                            placeholder="Your Email Address"
+                            class="input w-full"
+                        />
                         <select class="select w-full">
                             <option disabled selected>Number of Trees</option>
                             <option>1</option>
@@ -216,11 +259,17 @@
                             <option>4</option>
                             <option>5</option>
                         </select>
-                        <button class="btn btn-block rounded-full bg-[var(--secondary)] text-[var(--primary)]">Donate Now</button>
+                        <button
+                            class="btn btn-block rounded-full bg-[var(--secondary)] text-[var(--primary)]"
+                        >
+                            Donate Now
+                        </button>
                     </form>
                 </div>
             </div>
-            <div class="text-center font-extralight bg-[#14532D] text-white py-2">
+            <div
+                class="text-center font-extralight bg-[#14532D] text-white py-2"
+            >
                 <p>© 2025 Green Earth. All Rights Reserved.</p>
             </div>
         </footer>

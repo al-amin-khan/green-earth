@@ -26,9 +26,9 @@ const displayAllPlants = (plants) => {
     console.log(plants);
     plants.map(plant => {
         plantCardsContainer.innerHTML += `
-        <div class="h-full w-[350px] md:w-[260px] bg-white px-2 pt-3 rounded-lg shadow-md">
+        <div class="h-full w-[340px] md:w-[260px] mx-auto bg-white px-2 md:px-2 lg:px-2 pt-3 rounded-lg shadow-md">
             <div className="h-[100%]">
-                <img class="w-[280px] h-[150px] mx-auto object-cover rounded-2xl" loading="lazy" src="${plant.image}" alt="tree1" />
+                <img class="w-[280px] h-[150px] mx-auto object-cover rounded-2xl" loading="lazy" src="${plant.image}" alt="${plant.name}" />
                 <p class="pl-1 mt-2 text-sm font-semibold">${plant.name}</p>
                 <p class="pl-1 mt-2 text-xs text-justify text-gray-500">${plant.description}</p>
                 <div class="flex justify-between items-center px-1 mt-3">
@@ -69,7 +69,7 @@ loadCategories();
 function displayCategories(categories) {
     categories.forEach((category) => {
         categoriesContainer.innerHTML += `
-            <li id="category-${category.id}" class="px-2 cursor-pointer rounded-md">${category.category_name}</li>
+            <li id="category-${category.id}" class="border-2 md:border-0 lg:border-0 lg:bg-none md:bg-none px-2 cursor-pointer rounded-md">${category.category_name}</li>
         `;
     });
 }
