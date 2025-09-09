@@ -214,7 +214,6 @@ cartContainer.addEventListener("click", function (e) {
     });
     cartData.length = 0;
     cartData.push(...filteredCart);
-    console.log(filteredCart);
     displayAddToCart(filteredCart);
     if (cartData.length === 0) {
         totalPriceContainer.children[0].classList.add("hidden");
