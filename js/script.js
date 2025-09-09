@@ -1,10 +1,8 @@
 const categoriesContainer = document.getElementById("categories-container");
 const plantCardsContainer = document.getElementById("plants-container");
 const cartContainer = document.getElementById("cart");
-
-
-
-
+const totalPriceContainer = document.getElementById("total-price");
+// console.log(totalPriceContainer.children[0].children[0].innerText);
 
 const loadingSpinner = () => `
     <div class="flex w-52 flex-col gap-4">
@@ -39,9 +37,9 @@ const loadAllPlants = async () => {
 loadAllPlants();
 
 const displayAllPlants = (plants) => {
-    plantCardsContainer.innerHTML = '';
+    plantCardsContainer.innerHTML = "";
 
-    plants.map(plant => {
+    plants.map((plant) => {
         plantCardsContainer.innerHTML += `
         <div class="h-full w-[340px] md:w-[260px] mx-auto bg-white px-2 md:px-2 lg:px-2 pt-3 rounded-lg shadow-md">
             <div class="h-[100%]">
@@ -68,7 +66,7 @@ const displayAllPlants = (plants) => {
         </dialog>
         `;
         loadShowModalDialog(plant.id);
-    })
+    });
 };
 
 const loadCategories = async () => {
@@ -105,15 +103,19 @@ function displayCategories(categories) {
 const loadPlantsByCategory = async (id) => {
     loadingSpinner();
     plantCardsContainer.innerHTML = loadingSpinner().repeat(3);
-    const data = await fetchData(`https://openapi.programming-hero.com/api/category/${id}`);
+    const data = await fetchData(
+        `https://openapi.programming-hero.com/api/category/${id}`
+    );
     displayAllPlants(data.plants);
-}
+};
 
 // https://openapi.programming-hero.com/api/plant/1
 const loadShowModalDialog = async (id) => {
-    const data = await fetchData(`https://openapi.programming-hero.com/api/plant/${id}`);
+    const data = await fetchData(
+        `https://openapi.programming-hero.com/api/plant/${id}`
+    );
     const plant = data.plants;
-    
+
     const modal = document.getElementById(`my_modal_${id}`);
     modal.innerHTML = `
         <div class="modal-box">
@@ -137,47 +139,49 @@ const loadShowModalDialog = async (id) => {
             </div>
         </div>
     `;
-    
-}
-
+};
 
 // plantCardsContainer.addEventListener('click', (e) => {
 //     const cartBtn = e.target.classList.contains('btn-add-to-cart');
 //     if(!cartBtn) return;
-    
+
 //     document.getElementsByClassName('btn-add-to-cart').addEventListener('click', function (){
 //         console.log('clicked');
-        
+
 //     })
-    
-    
+
 //     // const { id, name, price } = cart.dataset;
 //     const countBtn = document.getElementsByClassName('count');
 //     console.log((countBtn[0].innerText)++ );
-    
 
-    
-    
 // })
 
 const cartData = [];
-plantCardsContainer.addEventListener('click', function (e){
-    const isCartBtn = e.target.classList.contains('btn-add-to-cart');
-    if(!isCartBtn) return;
-    const {id, name, price} = e.target.dataset;
-    const existing = cartData.find(item => item.id === id);
-    existing ? existing.quantity += 1 : cartData.push({ id, name, price, quantity: 1 });
+plantCardsContainer.addEventListener("click", function (e) {
+    const isCartBtn = e.target.classList.contains("btn-add-to-cart");
+    if (!isCartBtn) return;
+    const { id, name, price } = e.target.dataset;
+    const existing = cartData.find((item) => item.id === id);
+    existing
+        ? (existing.quantity += 1)
+        : cartData.push({ id, name, price, quantity: 1 });
     // console.log(cartData);
-    displayAddToCart(cartData)
-})
+    displayAddToCart(cartData);
+});
 
 const displayAddToCart = (carts) => {
-    cartContainer.innerHTML = '';
-    carts.map(cart => {
-        const {id, name, price, quantity} = cart;
+    cartContainer.innerHTML = "";
+    let totalPrice = 0;
+    carts.map((cart) => {
+        let total = 0;
+        const { id, name, price, quantity } = cart;
+        totalPriceContainer.children[0].classList.remove("hidden");
+        total = price * quantity;
+        totalPrice += total;
+        totalPriceContainer.children[0].children[0].innerText = totalPrice;
         cartContainer.innerHTML += `
             <div
-                class="grid grid-cols-4 bg-[var(--bg-main)] py-2 space-x-1 items-center rounded-sm shadow-xs mb-2"
+                class="grid grid-cols-4 bg-[var(--bg-main)] py-2 space-x-1 items-center rounded-sm shadow-xs mb-2 mx-auto"
             >
                 <div
                     class="col-span-3 text-sm text-gray-500 px-3"
@@ -190,16 +194,35 @@ const displayAddToCart = (carts) => {
                 </div>
                 <div
                     class="col-span-1 text-end pr-3 "
+                    data-id="${id}"
                 >
-                    <p class="text-md rounded-sm inline-block px-2 cursor-pointer text-gray-500">
+                    <p class="btn-delete text-md rounded-sm inline-block px-2 cursor-pointer text-gray-500">
                         <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-square-rounded-minus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 12h6" /><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" /></svg>
                     </p>
                 </div>
             </div>
         `;
-    })
-    
-}
+    });
+};
 
-
-
+cartContainer.addEventListener("click", function (e) {
+    const removeCartItemBtn = e.target.closest(".btn-delete");
+    if (!removeCartItemBtn) return;
+    const plantId = removeCartItemBtn.parentElement.dataset.id;
+    const filteredCart = cartData.filter((cart) => {
+        return cart.id !== plantId;
+    });
+    cartData.length = 0;
+    cartData.push(...filteredCart);
+    console.log(filteredCart);
+    displayAddToCart(filteredCart);
+    if (cartData.length === 0) {
+        totalPriceContainer.children[0].classList.add("hidden");
+        cartContainer.innerHTML = `
+            <div class="text-gray-400 text-sm font-extralight">
+                No product in cart
+            </div>
+        `;
+        return;
+    }
+});

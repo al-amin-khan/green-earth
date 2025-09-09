@@ -154,14 +154,14 @@
                             </div>
                         </div>
                         <div
-                            class="col-span-2 px-2 py-3 rounded-lg bg-white"
+                            class="col-span-2 md:col-span-2 lg:col-span-2 px-2 md:px-2 lg:px-2 py-2 md:py-3 lg:py-3 rounded-lg bg-white mx-auto w-[90vw] md:w-full lg:w-full"
                         >
                             <div>
-                                <h2 class="font-semibold text-xl">
-                                    Your Cart
-                                </h2>
+                                <h2 class="font-semibold text-xl">Your Cart</h2>
                                 <div id="cart" class="pt-3">
-                                    <div>
+                                    <div
+                                        class="text-gray-400 text-sm font-extralight"
+                                    >
                                         No product in cart
                                     </div>
                                     <!-- <div
@@ -184,6 +184,11 @@
                                             </p>
                                         </div>
                                     </div> -->
+                                </div>
+                                <div
+                                    id="total-price"
+                                >
+                                    <p class="hidden text-end">Total Price: <span class="total">0</span> BDT</p>
                                 </div>
                             </div>
                         </div>
